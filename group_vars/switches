@@ -1,0 +1,5 @@
+#location "etc/ansible/group_vars"
+
+ansible_network_os: "ios"
+ansible_user: "cisco"
+ansible_password: "cisco"

@@ -1,0 +1,19 @@
+- name: SHOW VERSION
+  hosts: routers
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+   - name: 'Task 1 show version'
+     ios_command:
+       commands: show version | in Version
+     register: device_output
+
+   - name: 'Task 2:  print result'
+     debug:
+       var: device_output.stdout_lines
+
+   - name: 'Task 3 Write Output to file'
+     copy:
+       content: '{{ device_output.stdout }}\n\n'
+       dest: 'output/{{inventory_hostname }}.txt'

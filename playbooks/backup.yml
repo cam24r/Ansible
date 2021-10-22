@@ -1,0 +1,17 @@
+---
+
+- name: Config Backup
+  hosts: routers
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+   - name: show run
+     ios_config:
+       backup: yes
+     register: config
+
+   - name: save output to /etc/ansible/backups
+     copy:
+      src: '{{ config.backup_path }}'
+      dest: '/etc/ansible/backups/{{ inventory_hostname }}_backup.log'

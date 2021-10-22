@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+   - name: Configure ACL on Cisco Switch
+     ios_config:
+       lines:
+         - access-list 90 permit 1.1.1.1
+         - no ip domain-lookup
+
+   - name: Verify ACL is present
+     ios_command:
+       commands:
+         - sh access-l
+       waitfor:
+         - result[0] contains 'permit 172.16.1.100'

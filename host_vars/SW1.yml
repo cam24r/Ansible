@@ -1,0 +1,6 @@
+---
+vlans:
+  - name: "Voice"
+    id: "11"
+  - name: "Data"
+    id: "21"

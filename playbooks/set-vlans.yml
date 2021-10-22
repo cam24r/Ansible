@@ -1,0 +1,11 @@
+---
+- name: "Play 1: Set VLAN"
+  hosts: switches
+  connection: network_cli
+  tasks:
+    - name "Task 1: Apply ios vlan config"
+      ios_config:
+        src: "/etc/ansible/templates/vlans.j2"
+        save_when: changed
+      notify: config_changed
+      register: cli_result

@@ -1,0 +1,7 @@
+- name: Fact Dump
+  hosts: all
+  connection: network_cli
+  tasks:
+   - name: Print all facts
+     debug:
+      var: ansible_facts

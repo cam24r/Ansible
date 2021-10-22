@@ -1,0 +1,13 @@
+- name: "PLAY 1: Capture interface information"
+  hosts: all
+  gather_facts : false
+  connection: network_cli
+  tasks:
+    - name: "TASK 1: Get interface config from routers"
+      ios_command:
+        commands: "show ip int br | ex unass"
+      register: cli_result
+
+    - name: "TASK 2: Print interface output"
+      debug:
+        msg: "{{ cli_result }}"
